@@ -20,11 +20,12 @@ def unpack(response, queryword):
             # queryword['Latest'].append(float(entry['latest']))
             print(entry)
             for item, value in entry['history'].items():
-                print(item)
-                print(value)
+                if value > 100 and search_by == 'confirmed' or value > 10 and search_by == 'deaths':
+                    print(item)
+                    print(value)
                 # queryword[item] = value
-                queryword[0].append(item)
-                queryword[1].append(value)
+                    queryword[0].append(item)
+                    queryword[1].append(value)
     return queryword
 
 
@@ -42,8 +43,8 @@ def return_figures():
 
     """
     graph_one = []
-    x_val = confirmed_data[1]
-    y_val = confirmed_data[0]
+    x_val = confirmed_data[0]
+    y_val = confirmed_data[1]
     graph_one.append(
         go.Scatter(
             x=x_val,
@@ -51,13 +52,13 @@ def return_figures():
             mode='lines',
             name='Confirmed Cases'
         ))
-    layout_one = dict(title='Confirmed cases in Poland',
-                      xaxis=dict(title = 'Confirmed cases total on the day'),
-                      yaxis=dict(title = 'Date'),
+    layout_one = dict(title='Confirmed cases in Poland (graph starts from 100th case)',
+                      xaxis=dict(title = 'Date'),
+                      yaxis=dict(title = 'Confirmed cases total on the day', type = 'log'),
                       )
     graph_two = []
-    x_val = deceased_data [1]
-    y_val = deceased_data [0]
+    x_val = deceased_data [0]
+    y_val = deceased_data [1]
     graph_two.append(
         go.Scatter(
             x=x_val,
@@ -65,9 +66,9 @@ def return_figures():
             mode='lines',
             name='Deceased Cases'
         ))
-    layout_two = dict(title='Deceased cases in Poland',
-                      xaxis=dict(title='Deceased cases total on the day'),
-                      yaxis=dict(title='Date'),
+    layout_two = dict(title='Deceased cases in Poland (graph starts from 10th case)',
+                      xaxis=dict(title='Date'),
+                      yaxis=dict(title='Deceased cases total on the day', type = 'log'),
                       )
     figures = [dict(data=graph_one, layout=layout_one), dict(data=graph_two, layout=layout_two)]
     return figures
