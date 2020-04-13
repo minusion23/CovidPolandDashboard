@@ -1,0 +1,1 @@
+from CovPolandDashboard import app
