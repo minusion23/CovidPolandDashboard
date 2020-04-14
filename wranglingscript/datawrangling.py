@@ -52,7 +52,7 @@ def return_figures():
             mode='lines',
             name='Confirmed Cases'
         ))
-    layout_one = dict(title='Confirmed cases in Poland (graph starts from 100th case)',
+    layout_one = dict(title='Confirmed cases in Poland <br> (graph starts from 100th case)',
                       xaxis=dict(title = 'Date'),
                       yaxis=dict(title = 'Confirmed cases total on the day', type = 'log'),
                       )
@@ -66,7 +66,7 @@ def return_figures():
             mode='lines',
             name='Deceased Cases'
         ))
-    layout_two = dict(title='Deceased cases in Poland (graph starts from 10th case)',
+    layout_two = dict(title='Deceased cases in Poland <br> (graph starts from 10th case)',
                       xaxis=dict(title='Date'),
                       yaxis=dict(title='Deceased cases total on the day', type = 'log'),
                       )
